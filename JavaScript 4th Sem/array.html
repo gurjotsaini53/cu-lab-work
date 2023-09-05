@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        const countries = [
+            'Albania',
+            'Bolivia',
+            'Canada',
+            'Denmark',
+            'Ethiopia',
+            'Finland',
+            'Germany',
+            'Hungary',
+            'Ireland',
+            'Japan',
+            'Kenya'
+            ]
+
+        const webTechs = [
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'React',
+            'Redux',
+            'Node',
+            'MongoDB'
+            ]
+
+            const empty = new Array();
+            const array_5 = [1,2,3,4,5];
+            document.write(array_5[0]);
+            document.write(array_5[2]);
+            document.write(array_5[array_5.length-1]);
+            document.write(array_5.length);
+            var mixedDataTypes =[1,'a',true,'Rahul',12.5];
+            var itCompanies = ['Facebook','Google','Microsoft','Apple','IBM','Oracle','Amazon'];
+            console.log(itCompanies);
+            console.log(itCompanies.length);
+            var middle =parseInt(( 0 + itCompanies.length-1) / 2)
+            console.log(itCompanies[0]);
+            console.log(itCompanies[itCompanies.length-1]);    
+            console.log(itCompanies[middle]);
+            itCompanies.forEach(function (value,index,array){
+                    array[index] = value.toUpperCase();
+                    console.log(array[index]);
+            });
+            var string='';
+            itCompanies.forEach(function (value,index,array){
+                    if(index == array.length-1){
+                        string = string + value;
+                    }
+                    else{
+                        string = string + value +',';
+                    }
+                    
+            });
+            console.log(string);
+            itCompanies.forEach(function(value,index,array){
+                    if(value.toLowerCase()==='apple'){
+                        array.splice(index,1);
+                    }
+            });
+            console.log(itCompanies);
+
+            console.warn('Console warn');
+
+            itCompanies.forEach(function(value,index){
+                var arr = value.toLowerCase().split('');                            
+             
+                var count=0;
+                
+               arr.forEach(function(val){                
+                 if(val=='o'){
+                    ++count;
+                 }
+               });
+               
+               if(count==2){
+                 itCompanies.splice(index,1);
+               }   
+                       
+            });
+            console.log(itCompanies);
+            
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="input"/> <button id="btnAddTask">Add Task</button>
+    </div>
+    <div>
+        <h2>To Do Task List</h2>
+    </div>
+    
+    <script>
+        var btnAddTask = document.getElementById('btnAddTask');
+        var ul = document.createElement('ul');
+        var div = document.getElementsByTagName('div');
+        
+        btnAddTask.addEventListener('click',function(){
+            var txt = document.getElementById('input').value;
+            var li = document.createElement('li');
+            var txtNode = document.createTextNode(txt);
+            li.append(txtNode);
+            var chkBox = document.createElement('input');
+            chkBox.type='checkbox';
+            addEventListner(li,chkBox);
+            var btn = document.createElement('button');
+            btn.innerText='X';
+
+            addEventListnerToButton(li,btn);
+
+            li.append(chkBox);
+            li.append(btn);
+            ul.append(li);
+            div[1].append(ul);
+        });       
+
+        function addEventListner(txtNode, chkBox){
+            chkBox.addEventListener('change',function(){
+                if(chkBox.checked){
+                    txtNode.style='text-decoration:line-through';
+                }
+                else{
+                    txtNode.style='text-decoration:none';
+                }
+            });
+        }
+
+        function addEventListnerToButton(li,btn){
+            btn.addEventListener('click',function(){
+                li.remove();
+            })
+        }
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const arr = [1,8,9,3,4,6];
+        const arr2 = [1,87,7,3,2];
+        const newArray = [];
+        
+        function print(value){
+            document.write(value+"<br>");
+        }
+
+        function callArray(array,print,newArray){
+            for(let a = 0;a<array.length;a++){
+                newArray.push(array[a]);
+            }
+        }
+
+        console.log(newArray);
+      
+
+     callArray(arr2,print,newArray);
+
+    </script>
+</body>
+</html>

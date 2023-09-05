@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+        .container div{
+            border:2px solid black;
+            padding:20px;
+            text-align: center;
+        }
+        .container div img{
+            width:250px;
+            height:250px;
+        }
+        .container div button{
+            background-color:rgb(248, 149, 79);            
+            padding:10px;
+            margin:5px;
+            border:none;
+        }
+
+        .container div button:hover{
+            background-color:rgb(245, 102, 0);
+            color:white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+    </div>
+    <script>
+        var products = [
+            {
+                id:1,
+                title:'HP Chromebook 11a',
+                description:'MediaTek MT8183 Processor 11.6 inch thin and light touchscreen laptop.',
+                price:21490,
+                image:'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61d1xNY54HL._AC_UY327_FMwebp_QL65_.jpg'
+            },
+            {
+                id:2,
+                title:'Lenovo IdeaPad Slim 5',
+                description:' Intel Core i5 11th Gen 15.6 FHD IPS Thin and Light Laptop',
+                price:57928,
+                image:'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/61WNxdAeAoL._AC_UY327_FMwebp_QL65_.jpg'
+            },
+            {
+                id:3,
+                title:'Asus Vivobook 16X(2022)',
+                description:'16 inch FHD+, AMD Ryzen 5 5600H, Thin and Laptop',
+                price:46990,
+                image:'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T2/images/I/71KEZ4zqOJL._AC_UY327_FMwebp_QL65_.jpg'
+            
+            }
+        ]
+
+       // var products = [];
+
+       function createElements(product){ 
+        var container = document.querySelector('.container');
+       
+            var productDiv = document.createElement('div');
+            var productImage = document.createElement('img');
+            var productTitle = document.createElement('h2');
+            var productPrice = document.createElement('h3');
+            var productDesc = document.createElement('p');
+            var btnAddToCart = document.createElement('button');
+            var btnBuyNow =  document.createElement('button');
+            productImage.src = product.image;
+            productTitle.innerText = product.title;
+            productPrice.innerText = product.price;
+            productDesc.innerText = product.description;
+            btnAddToCart.innerText = 'Add to Cart';
+            btnBuyNow.innerText = 'Buy Now';
+            productDiv.append(productImage);
+            productDiv.append(productTitle);
+            productDiv.append(productPrice);
+            productDiv.append(productDesc);
+            productDiv.append(btnAddToCart);
+            productDiv.append(btnBuyNow);
+            container.append(productDiv);
+       
+       }
+
+       document.body.onload= function(){
+           /* if(localStorage.getItem('ecomProducts')){
+                products = JSON.parse(localStorage.getItem('ecomProducts'));
+                
+                products.forEach(element => {
+                    createElements(element);
+                    
+                });
+            }*/
+
+            products.forEach(function(element){
+                createElements(element);
+            })
+
+        }
+
+       
+    </script>
+    
+</body>
+</html>

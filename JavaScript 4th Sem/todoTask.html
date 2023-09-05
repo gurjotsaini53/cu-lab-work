@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width:90%;
+            margin: auto;
+            border: 2px black solid;
+            padding:10px;
+        }
+        .list-wrapper, .input-list{
+            display:inline-block;
+            width:40%;
+            padding:20px;
+        }
+        .input-list textarea{
+            height: 150px;
+            width: 100%;
+        }
+
+        .list-wrapper ul{
+            list-style: none;           
+            margin: 0;            
+        }
+
+        .list-wrapper ul li{
+            border-bottom: 2px solid rgb(232, 235, 232);
+            padding:10px;
+            display:grid;
+            grid-template-columns: 3fr 1fr 1fr;
+            grid-template-rows:25px ;
+        }
+         ul li p{
+            margin:0;
+         }
+
+        .list-wrapper ul p{
+            display: inline-block;            
+        }
+        button{
+            width:22px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list-wrapper">
+            <h1>TASK LIST</h1>
+            <p>Add task to your list by typing on the right and press-ing enter.</p>
+            <ul id="list">
+                <li>
+                    <p>Dummy Text</p>                    
+                    <input onchange="strikeOut(this)" type="checkbox"/>
+                    <button onclick="deleteTask(this)">x</button>                    
+                </li>
+            </ul>
+        </div>
+        <div class="input-list">
+            <textarea id="txtList" onkeypress="return addToList(event)"></textarea>
+        </div>
+    </div>
+
+    <script>
+        let txt = document.getElementById('txtList');     
+        function deleteTask(e){
+            let data = [];
+            data = returnData();
+            data = data.filter(function(x){
+                return x != e.previousElementSibling.previousElementSibling.innerText;
+            });
+            localStorage.setItem('toDoList',JSON.stringify(data));             
+            e.parentElement.remove();
+        }
+        
+        function strikeOut(e){
+            if(e.checked){
+                e.previousElementSibling.style['text-decoration-line']='line-through';                
+            }
+            else{
+                e.previousElementSibling.style['text-decoration-line']='none';
+            }
+        }
+
+        function addToList(e){
+           if(e.key=='Enter'){            
+                createElement(e.target.value);   
+                let data = [];
+                data = returnData();
+                data.push(e.target.value); 
+                localStorage.setItem('toDoList',JSON.stringify(data));                    
+                e.target.value='';
+           }
+        }
+
+        function createElement(text){
+            let ul = document.getElementById('list');
+            let li = document.createElement('li');
+            let p = document.createElement('p');
+            let chkBox = document.createElement('input');
+            let button = document.createElement('button');
+            chkBox.setAttribute('type','checkbox');
+            chkBox.setAttribute('onchange','strikeOut(this)');
+            button.setAttribute('onclick','deleteTask(this)');
+            button.innerText='x';
+            p.innerText=text;
+            li.appendChild(p);
+            li.appendChild(chkBox);
+            li.appendChild(button);
+            ul.appendChild(li);
+        }
+
+        function returnData(){
+            let data = [];
+            //let txtBox = document.getElementById('txtBox');
+            if(localStorage.getItem('toDoList')){
+                data = JSON.parse(localStorage.getItem('toDoList'));           
+            }
+            else{
+                data = [];
+            }
+            return data;
+        }
+
+        window.onload = function() {
+            let data = [];
+            data = returnData();
+            console.log(data);
+            if(data.length>0){
+                data.forEach(function(value){
+                    createElement(value);
+                });
+            }
+        };
+    </script>
+</body>
+</html>

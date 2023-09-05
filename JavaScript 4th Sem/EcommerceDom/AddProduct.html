@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:80%;
+            margin:10px auto;
+        }
+
+        div table{            
+            margin:0 auto;
+            
+        }
+        div table tr td{
+            padding:10px;
+        }
+
+        div table tr th{
+            text-align:left;
+        }
+
+        #productTable{
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>Product Title</th>
+                <td><input type="text" id="txtTitle" placeholder="Enter title of the product"/></td>
+            </tr>
+            <tr>
+                <th>Product Price</th>
+                <td><input type="number" id="txtPrice" placeholder="Enter Price of the product"/></td>
+            </tr>
+            <tr>
+                <th>Product Description</th>
+                <td><input type="text" id="txtDescription" placeholder="Enter description of the product"/></td>
+            </tr>
+            <tr>
+                <th>Product Image Url</th>
+                <td><input type="text" id="txtImageUrl" placeholder="Enter Image Url of the product"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="btnAddProduct" onclick="addProduct()">Add Product</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table id="productTable">
+
+        </table>
+    </div>
+
+    <script>
+        var products = [];
+      
+        function addProduct(){
+            var productTitle = document.getElementById('txtTitle').value;
+            var productImage = document.getElementById('txtImageUrl').value;
+            var productPrice = document.getElementById('txtPrice').value;
+            var productDescription = document.getElementById('txtDescription').value;
+
+            var product = {};
+            product.title = productTitle;
+            product.image = productImage;
+            product.description = productDescription;
+            product.price = productPrice;
+           
+           if(localStorage.getItem('ecomProducts')){
+                products = JSON.parse(localStorage.getItem('ecomProducts'));
+            }
+
+            products.push(product);
+
+            localStorage.setItem('ecomProducts',JSON.stringify(products));
+            createElement(product);
+        }
+
+        function createElement(product){
+            var tr = document.createElement('tr');
+            var tdTitle = document.createElement('td');
+            var tdImage = document.createElement('td');
+            var tdPrice = document.createElement('td');
+            var tdDescription = document.createElement('td');
+            var productTable = document.getElementById('productTable');
+            
+            tdTitle.innerText = product.title;
+            tdImage.innerHTML = `<img src='${product.image}' width='150px' height='150px'/>`;
+            tdPrice.innerText = product.price;
+            tdDescription.innerText = product.description;
+
+            tr.append(tdImage);
+            tr.append(tdTitle);
+            tr.append(tdPrice);
+            tr.append(tdDescription);
+
+            productTable.append(tr);
+        }
+
+        document.body.onload = function(){
+            if(localStorage.getItem('ecomProducts')){
+                products = JSON.parse(localStorage.getItem('ecomProducts'));
+                products.forEach(element => createElement(element));
+            }   
+        }
+    </script>
+
+</body>
+</html>

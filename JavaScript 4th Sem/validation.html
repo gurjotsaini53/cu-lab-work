@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="myForm" onsubmit="return validate()">
+        <label>Task1: </label>
+        <input type="text" id="name"/></br>
+        <label>Password</label>
+        <input type="text" id="password"/></br>
+        <label>Gender</label>:
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="gender"/>
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="gender"/>
+        <input type="submit" value="submit"/>
+    </form>
+
+    <script>
+       
+        function validate(){
+            
+            /*
+            var passPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]){8,}$/
+            var email = /^[A-Za-z0-9_\-\.]+[@][a-zA-Z0-9]+\.[a-zA-Z0-9]{2,3}$/
+            var name=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){5}/;/*
+            */
+
+            validateName();
+            //validateEmail();
+            //validateRadio();
+            
+
+        }
+
+        function validateName(){
+            var name = document.myForm.name;
+            var errorLable = document.createElement('label');
+
+            //var nameRegEx=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){5,}/;
+
+            var nameRegEx = /([A-Z]){1,5}/;
+
+            if(name.value==''|| name.value==null){
+                errorLable.innerText = 'Name Field cannot be empty';
+                name.after(errorLable);
+                return false;
+            }
+
+            if(!nameRegEx.test(name.value)){
+                errorLable.innerText = 'Name field must have more then 5 characters';
+                name.after(errorLable);
+                return false;
+            }
+            return true;
+
+        }
+
+    </script>
+
+</body>
+</html>

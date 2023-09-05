@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #main{
+        height: 75vh;
+        width: 95vw;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        /* background-color: green; */
+        }
+
+        #left-pane{
+        height: 70vh;
+        width: 55vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #f1f1f1;
+        }
+        #left-pane #upper{
+        height: 20%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #f1f1f1;
+        }
+        h1{
+        margin:3px;
+        }
+        #left-pane #lower{
+        height: 78%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #f1f1f1;
+        }
+        #lower div{
+        height: 10%;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        /* background-color: red; */
+        }
+        #lower div div{
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        background-color: #f1f1f1;
+        }
+
+        #lower div #left{
+        font-size:20px;
+        justify-content: flex-start;
+        }
+        #lower div #right{
+        justify-content: flex-end;
+        }
+        #lower div #right input{
+        cursor: pointer;
+        }
+        #lower div #right div{
+        width: 10%;
+        cursor: pointer;
+        }
+
+        #lower hr{
+        width: 99.5%;
+        /* background-color: red; */
+        }
+
+        #right-pane{
+        height: 70vh;
+        width: 30vw;
+        display: flex;
+        justify-content: flex-start;
+        background-color: #ffff;
+        }
+
+        #right-pane input{
+        height: 20%;
+        width: 100%;
+        border: 0;
+        padding: 0;
+        font-size: 40px;
+        }
+        .cross{
+        background-color: red;
+        }
+ 
+</style>
+
+</head>
+<body>
+<div id="main">
+  <div id="left-pane">
+    <div id="upper">
+      <h1>TASK LIST</h1>
+        <p>
+          Add tasks to your list by typing to the right an 
+          pressing enter. you may then view pending tasks 
+          below:
+        </p>
+        <br>
+    </div>
+    <div id="lower">
+      
+    </div>
+  </div>
+  <div id="right-pane">
+    <input type="text" id="input" placeholder="I need to...">
+  </div>
+</div>
+
+
+<script>
+
+const inputTagEle = document.getElementById("input");
+
+inputTagEle.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      if(inputTagEle.value.trim()!=""){
+        addTask(inputTagEle);
+        inputTagEle.value='';
+      }
+    }
+});
+
+inputTagEle.addEventListener('focusout', function (e) {
+    inputTagEle.value="";
+});
+
+function addTask(inputTagEle){
+  const divContainer=document.createElement("div");  
+  const divContainerLeft=document.createElement("div");
+  const divContainerRight=document.createElement("div");
+  divContainerLeft.setAttribute("id", "left");
+  divContainerRight.setAttribute("id", "right");
+    
+  const EleValuenode = document.createTextNode(inputTagEle.value);
+  divContainerLeft.appendChild(EleValuenode);
+
+  const crossEle=document.createElement("div");
+  crossEle.setAttribute("class", "cross");
+  
+  const crossValueNode = document.createTextNode("X");
+  crossEle.appendChild(crossValueNode);
+
+  const inputTag=document.createElement("input");
+  inputTag.setAttribute("type", "checkbox");
+
+  divContainerRight.appendChild(inputTag);
+  divContainerRight.appendChild(crossEle);
+
+  divContainer.appendChild(divContainerLeft);
+  divContainer.appendChild(divContainerRight);
+
+  const lowerEle = document.getElementById("lower");
+  
+  lowerEle.appendChild(divContainer);
+  const hrTag=document.createElement("hr");
+  
+  lowerEle.appendChild(hrTag);
+  
+  addEventListnersToInputTag(inputTag,divContainerLeft);
+  addEventListnersToCross(crossEle,lowerEle,divContainer,hrTag);
+}
+
+function addEventListnersToInputTag(inputTag,divContainerLeft){
+  inputTag.addEventListener( 'change', function() {
+    if(this.checked) {
+        // Checkbox is checked..
+        divContainerLeft.style.textDecoration="line-through";
+    } else {
+        // Checkbox is not checked..
+        divContainerLeft.style.textDecoration="none";
+    }
+})
+}
+function addEventListnersToCross(crossEle,paraEle,childEle1,childEle2){
+  crossEle.addEventListener('click',function(){
+    paraEle.removeChild(childEle1);
+    paraEle.removeChild(childEle2);
+  })
+}
+
+</script>
+</body>
+</html>

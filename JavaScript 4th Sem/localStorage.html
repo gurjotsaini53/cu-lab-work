@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="txtBox"/>
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="getData()">Get Data</button>
+    <button onclick="deleteData()">Delte Data</button>
+    <div id="divData">
+
+    </div>
+    <script>
+         let div = document.getElementById('divData');
+        let ul = document.createElement('ul');
+        function getData(){
+            let data = [];
+            data = returnData();
+            
+            if(data.length>0){
+                data.forEach(element => {
+                    let li = document.createElement('li');
+                    li.innerText=element;
+                    ul.appendChild(li);
+                });
+            }
+            div.appendChild(ul);  
+        }
+
+        function saveData(){
+            let data = returnData();            
+            data.push(txtBox.value);
+            localStorage.setItem('saveData',JSON.stringify(data));
+        }
+
+        function returnData(){
+            let data = [];
+           
+            if(localStorage.getItem('saveData')){
+                data = JSON.parse(localStorage.getItem('saveData'));           
+            }
+            else{
+                data = [];
+            }
+            return data;
+        }
+
+        function deleteData(){
+            localStorage.removeItem('saveData');
+        }
+    </script>
+</body>
+</html>

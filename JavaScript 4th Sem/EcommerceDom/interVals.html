@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        div{            
+           font-size:42px ;       
+        }
+        #errorDiv{
+            visibility: hidden;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            margin:0 auto;
+            background-color: red;
+            width:30%;
+        }
+    </style>   
+</head>
+<body>
+    <div id="errorDiv">
+        This is an error message.
+    </div>
+    <div>
+       <span id="hh">00</span>:<span id="mm">00</span>:<span id="ss">00</span>
+    </div>
+    <button onclick="startClock()">Start</button>
+    <button onclick="stopClock()">Stop</button>
+    
+   <button onclick="showDiv()">Show Div </button>
+    
+    <script>
+    
+      var hour = 0;
+      var min = 0;
+      var sec =0;
+      var interval;
+
+      function startClock(){
+        interval =  setInterval(startWatch,1000);
+      }
+
+      function stopClock(){
+        clearInterval(interval);
+      }
+
+      function startWatch(){
+        var hh = document.getElementById('hh');
+        var mm = document.getElementById('mm');
+        var ss = document.getElementById('ss');
+
+        sec++;
+        if(sec>59){
+            sec=0;
+            min++;
+        }
+        if(min>59){
+            min=0;
+            hour++;
+        }
+        if(hour>23){
+            hour=0;
+        }
+        hh.innerText = hour;
+        mm.innerText = min;
+        ss.innerText = sec;
+      }
+
+     
+
+     function showDiv(){
+        var div = document.getElementById('errorDiv');
+        div.style.visibility = 'visible';
+        setTimeout(hideDiv, 3000);
+     }
+
+     function hideDiv(){
+        var div = document.getElementById('errorDiv');
+        div.style.visibility = 'hidden';
+     }
+    </script>
+</body>
+</html>

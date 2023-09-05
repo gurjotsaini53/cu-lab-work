@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>First Number</td>
+            <td><input type="number" id="firstNumber"/></td>
+        </tr>
+        <tr>
+            <td>Second Number</td>
+            <td>
+                <input type="number" id="secondNumber"/>
+            </td>
+        </tr>
+    </table>
+    <button onclick="add()">+</button>
+    <button id="diff">-</button>
+    <button id="product">x</button>
+    <button>/</button>
+    <br>
+    Result :<label id="lblResult"> </label>
+</body>
+<script>
+    var firstNumber = document.querySelector('#firstNumber');
+    var secondNumber = document.querySelector('#secondNumber');
+    var lblResult = document.querySelector('#lblResult');
+    var btnDifference = document.querySelector('#diff');
+    var btnProduct = document.querySelector('#product');
+
+    btnProduct.addEventListener('click',function(){
+        var result = parseInt(firstNumber.value) * parseInt(secondNumber.value);
+        lblResult.innerText = result;
+    });
+
+    btnDifference.onclick = function(){
+        var result = parseInt(firstNumber.value) - parseInt(secondNumber.value);
+        lblResult.innerText = result;
+    }
+
+    function add(){
+        var result = parseInt(firstNumber.value) + parseInt(secondNumber.value);
+        lblResult.innerText = result;
+    }
+
+    function product(){
+        var result = parseInt(firstNumber.value) * parseInt(secondNumber.value);
+        lblResult.innerText = result;
+    }
+
+</script>
+</html>

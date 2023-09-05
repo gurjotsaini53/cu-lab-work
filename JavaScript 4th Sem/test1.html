@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="numberIteration"/>
+    <button id="btn" onclick="addArray()">Add</button>
+    <p id="para"></p>
+    
+    <script>
+       /* let employees=[{"name":"emp1","age":32,"department":1},
+{"name":"emp2","age":33,"department":2},
+{"name":"emp3","age":31,"department":1}]
+
+let departments=[{"departmentid":1,"title":"IT"},
+{"departmentid":2,"title":"ECE"},
+{"departmentid":3,"title":"Mech"},
+]
+
+employees.forEach(function(value){
+  var department = departments.filter(function(x){
+    return x.departmentid===value.department;
+  })
+  document.write(`${value.name}, ${value.age}, ${department[0].title} <br>`)
+  
+})*/
+
+    /*var value= parseInt(prompt('Enter a number from 0 to 100'));
+    while(value>100){
+        alert('Enter number is not in valid rage');
+        value= prompt('Enter a number from  0 to 100');
+
+    }*/
+
+    function addArray(){
+        var text = parseInt(document.getElementById('numberIteration').value);
+        var i=0;
+        var arr = [];
+        while(i<text){
+            var value = prompt('Enter the value of element'+i);
+            arr.push(value);
+            i++;
+        }
+        var p = document.getElementById('para');
+        p.innerText = arr;
+    }
+
+
+    </script>
+</body>
+</html>

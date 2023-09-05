@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="date" data-date="02/06/2021"></p>
+    <p class="date" data-date="02/05/2022"></p>
+    
+    <script>
+        function dateDiff(date){
+            var now = new Date();
+            var oldDate = new Date(date);
+
+            var expYear = oldDate.getYear();
+            var expMonth = oldDate.getMonth();
+            var expDate = oldDate.getDate();
+
+
+            var currentYear = now.getYear();
+            var currentMonth = now.getMonth();
+            var currentDate  = now.getDate();
+            var monthExp = 0;
+            var totalYear = currentYear - expYear;
+            if(currentMonth>=expMonth){
+                monthExp = currentMonth-expMonth;
+            }
+            else{
+                totalYear--;
+                monthExp = 12+currentMonth-expMonth;
+            }
+
+            if(currentDate>=expDate){
+                var dateExp = currentDate-expDate;
+            }
+            else{
+                monthExp--;
+                var dateExp = 31 + currentDate-expDate;
+            }
+            if(monthExp<0){
+                monthExp=11;
+                totalYear--;
+            }
+
+            return `${totalYear} Yrs ${monthExp} Months`;
+        }
+
+        function modifyDate(){
+            var p = document.querySelectorAll('.date');
+            p.forEach(function(value,index){
+                var oldDate = value.getAttribute('data-date');
+                value.innerHTML = dateDiff(oldDate);                
+            });           
+        }
+
+        modifyDate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .container div{
+        display:inline-block;                
+      }
+
+     
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="right">
+      <input id="input" type="text" placeholder="Enter the task"/>
+      <button onclick="addElement()">Add to the Array</button>
+      <button onclick="getElement()">Get from array</button>
+    </div>
+    <div class="left">
+      <h2>Press enter after entering the task</h2>
+      <div id="leftLower">
+
+      </div>
+    </div>
+   
+  </div>
+
+ <script>
+  var leftLower = document.getElementById('leftLower');
+  var ul = document.createElement('ul');
+  leftLower.append(ul);
+
+  function addElement(){
+    var li = document.createElement('li');
+    li.innerText = document.getElementById('input').value;
+
+    var chkBox = document.createElement('input');
+    chkBox.type='checkbox';
+    li.append(chkBox);
+    addCheckBoxEvent(chkBox,li);
+
+
+    var button = document.createElement('button');
+    button.innerText = 'X';
+    addButtonEvent(button,li);
+
+    li.append(button);
+
+    ul.append(li);    
+  }
+
+  function addCheckBoxEvent(chkBox, li){
+      chkBox.addEventListener('change',function(){
+        if(chkBox.checked){
+          li.style.textDecoration='line-through';
+        }
+        else{
+          li.style.textDecoration='none';
+        }
+      });
+  }
+
+  function addButtonEvent(btn, li){
+    btn.addEventListener('click',function(){
+      li.remove();
+    });
+  }
+
+ </script>
+</body>
+</html>

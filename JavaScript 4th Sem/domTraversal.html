@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+<body>
+  <div id="div1">    
+    <p>This is a div1 para1</p>
+    <p>This is a div2 para2</p>
+  </div>
+
+<script>
+      var arr = [];
+        function addList(){
+            var input = document.getElementById('txt');
+            var list =document.getElementById('list');
+            var li = document.createElement('li');
+            li.innerText= input.value;
+            arr = returnData();
+            arr.push(input.value);
+            localStorage.setItem('listData',JSON.stringify(arr));
+            list.append(li);
+        }
+
+        function getData(){
+            var data=[];
+            data = returnData();
+            console.log(data);
+            var list =document.getElementById('list');
+            data.forEach(function(value){               
+                var li = document.createElement('li');
+                li.innerText= value;            
+                list.append(li);
+            });
+        }
+
+        function returnData(){
+            var data = [];
+            if(localStorage.getItem('listData')){
+                data=JSON.parse(localStorage.getItem('listData'));                              
+            }
+            else{
+                data=[];
+            }
+            return data;
+        }
+        
+
+</script>
+
+</body>
+</html>

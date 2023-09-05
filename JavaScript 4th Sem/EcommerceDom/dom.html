@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+    <style>
+        .active{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <p class="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia voluptas mollitia accusantium officiis unde quae numquam consequatur nisi consectetur, nam corporis, quasi in similique, blanditiis repellat cum repellendus ratione quidem!</p>
+    <div>
+        <p class="para">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia voluptas mollitia accusantium officiis unde quae numquam consequatur nisi consectetur, nam corporis, quasi in similique, blanditiis repellat cum repellendus ratione quidem!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde autem cupiditate vero id quaerat laboriosam, modi incidunt nam, molestiae illum corporis libero, ipsum repudiandae repellat. Architecto possimus accusantium est placeat?</p>
+    </div>
+    
+
+    <script>
+        var para = document.querySelector('div .para');
+        /*
+        1. innerText
+        2. innerHTML
+        3. setAttribute
+        4. style
+        */
+
+        para.innerHTML = "This is the <strong>first para.</strong>";
+        para.setAttribute("class","active");
+        console.log(para);
+    
+    </script>
+</body>
+</html>

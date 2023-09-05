@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+  /*var weather = fetch('api.meteomatics.com/2023-03-31T00:00:00Z/t_2m:C/52.520551,13.461804/html')
+                .then(response=>response.json())
+                .then(data=>console.log(data));*/
+
+            function promiseReturn(){
+                return new Promise(
+                    function(resolve, reject){
+                        var number = prompt('Enter a number');
+                        if(number<10){
+                            resolve("Resolve is called"+number);
+                        }
+                        else{
+                            reject("Reject is called"+number);
+                        }
+                    }
+                );
+            }
+
+            
+            
+            async function promiseFunction(){
+                try{
+                    var promiseResult = await promiseReturn();
+                console.log(promiseResult);
+                }
+                catch{
+                    console.log("Reject is called");
+                }
+            }
+               
+            promiseFunction();
+
+           /*     promiseReturn().then(
+                    forResolve                    
+                ).catch(
+                    forReject
+                ).finally(
+                    console.log('Finally is called')
+                );
+
+                function forResolve(number){
+                    console.log('Resolve is called and data received is '+number);
+                }
+
+                function forReject(number){
+                    console.log('Reject is called and data received is '+number);
+                }*/
+    </script>
+
+</body>
+</html>

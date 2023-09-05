@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display:inline-block;
+            margin:20px; 
+            padding:20px;       
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="txtBox">
+    <button id="btn" onclick="clickAdd()">Add</button>
+    <br>
+    
+    <div style="border-right:2px solid black">
+        Odd Array <br>
+        <p id="oddPara"></p>
+    </div>
+    <div>
+        Even Array <br>
+        <p id="evenPara"></p>
+    </div>
+
+    <script>
+        const oddArr = [];
+        const evenArr =[];
+        function clickAdd(){
+            let txt = parseInt(document.getElementById('txtBox').value);
+            let oddPara = document.getElementById('oddPara');
+        let evenPara = document.getElementById('evenPara');
+        
+        if(txt%2==0){
+            evenArr.push(txt);
+        }
+        else{
+            oddArr.push(txt);
+        }
+            oddPara.innerText = oddArr;
+            evenPara.innerText = evenArr;
+        }
+    </script>
+</body>
+</html>
